@@ -6,3 +6,11 @@ crash.log
 
 # For built boxes
 *.box
+
+# Ignore public/private key in
+# the vault test
+**/deploy_key_example
+**/deploy_key_example.pub
+
+# Ignore any vault tokens
+**/.vault-token
