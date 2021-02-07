@@ -15,8 +15,6 @@ crash.log
 # Ignore any vault tokens
 **/.vault-token
 
-vwmare-iso-test/output/
-vwmare-iso-test/output/*
-vwmare-iso-test/iso/
-vwmare-iso-test/iso/*
+**/output/
+**/iso/
 
