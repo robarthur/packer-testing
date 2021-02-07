@@ -3,6 +3,10 @@ locals {
 }
 
 source "vmware-iso" "test" {
+      # Enter the menu to run a custom boot command
+      # Delete the existing values <bs>*83
+      # Run the install using cloud init.
+      # Files are served to cloudinit from a local http server
       boot_command= [
         " <wait><enter><wait>",
         "<f6><esc>",
@@ -26,6 +30,7 @@ source "vmware-iso" "test" {
   http_directory         = "./http"
   iso_checksum           = "file:https://releases.ubuntu.com/focal/SHA256SUMS"
   iso_target_path        = "iso/"
+  # Try to use a local iso first, otherwise pull from the web.
   iso_urls               = ["iso/ubuntu-20.04.2-live-server-amd64.iso", "https://releases.ubuntu.com/focal/ubuntu-20.04.2-live-server-amd64.iso"]
   memory                 = "4096"
   cores                  = "4"
@@ -38,6 +43,7 @@ source "vmware-iso" "test" {
   ssh_timeout            = "30m"
   ssh_username           = "ubuntu"
 }
+
 
 # A build starts sources and runs provisioning steps on those sources.
 build {
