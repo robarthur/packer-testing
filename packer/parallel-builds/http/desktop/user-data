@@ -1,0 +1,30 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: en
+    variant: us
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens33:
+          dhcp4: true
+  storage:
+    layout:
+      name: lvm
+  identity:
+    hostname: ubuntu
+    username: ubuntu
+    password: $6$rounds=4096$HA6Rzkg3Mdk$AEQO/PUhb1QKtPG5jUcFkIrg2oC35ZucRG.vtto0tbfS2ejkpX2cdvpQejqmoW9hiSTm9ceLjt4WqtXR4cfOJ0
+  packages:
+  - ubuntu-desktop
+  ssh:
+    install-server: yes
+    allow-pw: yes
+  user-data:
+    disable_root: false
+  late-commands:
+    #- 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
